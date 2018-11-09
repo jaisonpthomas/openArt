@@ -13,4 +13,4 @@ Built with Node/Express.js back-end and MongoDB database. Clean, minimalist fron
 
 
 
-Images in homepage view above and database seed file are featured from the National Gallery of Art's open source collections.
+*Images featured in homepage view above and database seed file are from the National Gallery of Art's open source collections.*
