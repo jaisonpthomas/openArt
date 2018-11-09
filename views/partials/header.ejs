@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>OpenArt</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+    <style>
+        body {
+            background: rgb(58, 58, 87);
+        }
+        li, .navbar-brand {
+            font-family: "Georgia";
+        }
+        h4, h6 {
+            font-family: "Georgia";
+            color: rgb(35, 35, 61);
+            text-align: center;
+        }
+        .btn-link {
+            font-family: "Georgia";
+            text-align: center;
+        }
+        header {
+            margin-bottom: 5em;
+        }
+        h1, p, h3, h5 {
+            color: white;
+            font-family: Georgia;
+        }
+        .darkButton {
+            background: black; color: lightgray; font-family: Georgia
+        }
+        .containerPad {
+            margin: 100px, 100px;
+        }
+        .artCenter {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+            text-align: center;
+        }
+        body {
+            padding-top: 70px;
+        }
+        .styledForm {
+            background: lightgray;
+            font-family: Georgia;
+            color: black;
+        }
+    </style>
+    <body> 
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/pieces">OpenArt</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <% if (!currentUser) { %>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Register</a></li>
+                        <% } else { %>
+                        <li><a href="/logout">Logout</a></li>  
+                        <% } %>     
+                                        
+                    </ul>
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div class="container containerPad">

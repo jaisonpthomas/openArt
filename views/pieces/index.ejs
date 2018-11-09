@@ -1,0 +1,24 @@
+<% include ../partials/header%>
+    <header style="margin: 100 100 100 100;">
+        <h1>Welcome to OpenArt</h1>
+        <p>A place to share and discuss the world's art</p>
+        <a href="pieces/new" class="btn darkButton btn-default"> Submit New Piece</a>
+    </header>
+    
+    <div class="row" style="display: flex; flex-wrap: wrap;">
+        <% pieces.forEach(function(piece) {%>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail" style="background: rgb(241, 238, 202)">
+                    <img src="<%= piece.image %>" />
+                    <div class="caption">
+                        <h4><strong><%= piece.title %></strong></h4>
+                        <h6><%= piece.artist %></h6>
+                        <a href="/pieces/<%= piece._id %>" class="btn btn-link btn-block">Details</a>
+                    </div>
+                </div>
+            </div>
+        <%})%>
+    </div>
+    
+<% include ../partials/footer%>
+

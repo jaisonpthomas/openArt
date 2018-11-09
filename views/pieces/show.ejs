@@ -1,0 +1,18 @@
+<% include ../partials/header %>
+
+<div class="artCenter">
+    <h1><%= piece.title %></h1>
+    <h5><%= piece.artist %></h5>
+    <h5><%= piece.year %></h5>
+    <br/>
+    <img src="<%= piece.image%>"/>
+</div>
+<br/><hr/>
+<h3>Comments</h3>
+<a class="btn btn-default darkButton" href="/pieces/<%=piece._id%>/comments/new">Add Comment</a>
+<br/><br/>
+<h5><% piece.comments.forEach(function(comment){%></h5>
+    <p><strong><%=comment.author%></strong> - <%=comment.text%></p>
+<%})%>
+
+<% include ../partials/footer%>
