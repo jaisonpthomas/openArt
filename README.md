@@ -10,3 +10,7 @@ Built with Node/Express.js back-end and MongoDB database. Clean, minimalist fron
 + Allow Users to Edit Posts/Comments
 + Improve User Error Messages with Flash Messages
 + Refactor app.js into multiple route files
+
+
+
+Images in homepage view above and database seed file are featured from the National Gallery of Art's open source collections.
