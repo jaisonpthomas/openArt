@@ -4,7 +4,7 @@
 
 Concept application allowing users to share their open source artwork. Users may upload new submissions and comment on existing pieces.
 
-Built with Node/Express.js back-end and MongoDB database. Clean, minimalist front-end written in HTML/CSS.
+Built with Node/Express.js back-end and MongoDB database. Clean, minimalist front-end written in HTML/CSS with additional Bootstrap styling.
 
 #### Future Optimizations
 + Allow Users to Edit Posts/Comments
