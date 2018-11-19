@@ -9,8 +9,6 @@ Built with Node/Express.js back-end and MongoDB database. Clean, minimalist fron
 #### Future Optimizations
 + Allow Users to Edit Posts/Comments
 + Improve User Error Messages with Flash Messages
-+ Refactor app.js into multiple route files
-
 
 
 *Images featured in homepage view above and database seed file are from the National Gallery of Art's open source collections.*
