@@ -1,14 +1,9 @@
 const express = require("express"),
   router = express.Router(),
-  //bodyParser = require("body-parser"),
   Piece = require("../models/piece");
-//Comment = require("./models/comment"),
-//User = require("./models/user"),
-//seedDB = require("./seeds");
 
 //INDEX - show all pieces
 router.get("/", isLoggedIn, function(req, res) {
-  console.log(req.user);
   Piece.find({}, function(err, pieces) {
     if (err) {
       console.log("/pieces GET error");
@@ -21,24 +16,27 @@ router.get("/", isLoggedIn, function(req, res) {
 
 //CREATE - create piece
 router.post("/", isLoggedIn, function(req, res) {
-  Piece.create(
-    {
-      title: req.body.title,
-      artist: req.body.artist,
-      artform: req.body.artform,
-      year: req.body.year,
-      image: req.body.image
-    },
-    function(err, piece) {
-      if (err) {
-        console.log("Something Went Wrong");
-      } else {
-        console.log("Piece Created");
-        console.log(piece);
-        res.redirect("/pieces");
-      }
+  const author = {
+    id: req.user._id,
+    username: req.user.username
+  };
+  const newPiece = {
+    title: req.body.title,
+    artist: req.body.artist,
+    artform: req.body.artform,
+    year: req.body.year,
+    image: req.body.image,
+    author: author
+  };
+  Piece.create(newPiece, function(err, piece) {
+    if (err) {
+      console.log("Piece.create - something Went Wrong");
+    } else {
+      console.log("Piece Created");
+      console.log(piece);
+      res.redirect("/pieces");
     }
-  );
+  });
 });
 
 //NEW - Show New Piece Form
@@ -58,6 +56,44 @@ router.get("/:id", isLoggedIn, function(req, res) {
         res.render("pieces/show", { piece: foundPiece });
       }
     });
+});
+
+//EDIT - Update Form
+router.get("/:id/edit", isLoggedIn, function(req, res) {
+  Piece.findById(req.params.id, function(err, foundPiece) {
+    if (err) {
+      console.log("EDIT ERROR");
+      console.log(err);
+    } else {
+      res.render("pieces/edit", { piece: foundPiece });
+    }
+  });
+});
+//UPDATE - Post Update to DB
+router.put("/:id", isLoggedIn, function(req, res) {
+  Piece.findByIdAndUpdate(req.params.id, req.body.piece, function(
+    err,
+    foundPiece
+  ) {
+    if (err) {
+      console.log("UPDATE error");
+      console.log(err);
+    } else {
+      res.redirect("/pieces/" + req.params.id);
+    }
+  });
+});
+
+//DESTROY
+router.delete("/:id", isLoggedIn, function(req, res) {
+  Piece.findByIdAndRemove(req.params.id, function(err) {
+    if (err) {
+      console.log("Delete Error");
+      console.log("err");
+    } else {
+      res.redirect("/pieces");
+    }
+  });
 });
 
 function isLoggedIn(req, res, next) {

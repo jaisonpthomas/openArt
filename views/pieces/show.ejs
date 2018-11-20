@@ -4,15 +4,22 @@
     <h1><%= piece.title %></h1>
     <h5><%= piece.artist %></h5>
     <h5><%= piece.year %></h5>
+    <em><h5>Submitted by <%= piece.author.username %></h5></em>
     <br/>
-    <img src="<%= piece.image%>"/>
+    <img src="<%= piece.image%>" style="margin-bottom: 3rem"/>
+    <br/>
+    <a class="btn btn-default darkButton" href="/pieces/<%=piece._id%>/edit">Edit</a>
+    <form id="deleteForm" action="/pieces/<%= piece._id %>?_method=DELETE" method="POST">
+        <button class="btn btn-default darkButton">Delete</button>
+    </form>
+
 </div>
-<br/><hr/>
+<hr/>
 <h3>Comments</h3>
 <a class="btn btn-default darkButton" href="/pieces/<%=piece._id%>/comments/new">Add Comment</a>
 <br/><br/>
 <h5><% piece.comments.forEach(function(comment){%></h5>
-    <p><strong><%=comment.author%></strong> - <%=comment.text%></p>
+    <p><strong><%=comment.author.username%></strong> - <%=comment.text%></p>
 <%})%>
 
 <% include ../partials/footer%>

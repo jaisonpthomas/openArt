@@ -4,6 +4,7 @@ const express = require("express"),
   mongoose = require("mongoose"),
   passport = require("passport"),
   LocalStrategy = require("passport-local"),
+  methodOverride = require("method-override"),
   User = require("./models/user"),
   seedDB = require("./seeds");
 
@@ -14,11 +15,12 @@ const commentRoutes = require("./routes/comments"),
 
 //Database Setup and Seed
 mongoose.connect("mongodb://localhost/openArt");
-seedDB();
+//seedDB();
 
-app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 
 //User Auth and Session Information
 app.use(

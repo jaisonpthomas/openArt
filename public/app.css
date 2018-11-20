@@ -48,3 +48,7 @@ body {
   font-family: Georgia;
   color: black;
 }
+#deleteForm {
+  margin-left: 1rem;
+  display: inline;
+}

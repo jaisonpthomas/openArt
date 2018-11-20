@@ -21,11 +21,13 @@ router.post("/", isLoggedIn, function(req, res) {
       console.log(err);
       res.redirect("/pieces");
     } else {
-      console.log(req.body.comment);
       Comment.create(req.body.comment, function(err, comment) {
         if (err) {
           console.log(err);
         } else {
+          comment.author.id = req.user._id;
+          comment.author.username = req.user.username;
+          comment.save();
           piece.comments.push(comment);
           piece.save();
           res.redirect("/pieces/" + piece._id);
